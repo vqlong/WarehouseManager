@@ -1,0 +1,214 @@
+﻿<Window x:Class="View.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        Title="Phần mềm quản lý kho" Height="850" Width="1600"
+        WindowStartupLocation="CenterScreen"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" 
+        WindowStyle="None"
+        ResizeMode="NoResize" 
+        x:Name="main"
+        DataContext="{StaticResource MainVM}"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:h="clr-namespace:Helper;assembly=Helper"
+        h:AttachManager.ShouldClose="True">
+    <Window.Resources>
+        <local:LoginView x:Key="View.Login" />
+        <local:UnitView x:Key="View.Unit"/>
+        <local:SuplierView x:Key="View.Suplier"/>
+        <local:CustomerView x:Key="View.Customer"/>
+        <local:ItemView x:Key="View.Item"/>
+        <local:UserView x:Key="View.User"/>
+        <local:InputView x:Key="View.Input"/>
+        <local:OutputView x:Key="View.Output"/>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="ContentRendered">
+            <i:InvokeCommandAction Command="{Binding ShowDialog}" CommandParameter="{StaticResource View.Login}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <DockPanel TextBlock.FontSize="20" Background="AliceBlue">
+        <local:TitleBar DockPanel.Dock="Top"/>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar Style="{StaticResource MaterialDesignToolBar}">
+                <ToolBar.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Padding" Value="15"/>
+                    </Style> 
+                    <Style TargetType="md:PackIcon">
+                        <Setter Property="Width" Value="80"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="Foreground" Value="Gray"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                    </Style> 
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="Gray"/>
+                        <Setter Property="TextAlignment" Value="Center"/>
+                    </Style>
+                </ToolBar.Resources>
+                <Button Command="{Binding ShowDialog}" CommandParameter="{StaticResource View.Input}">
+                    <StackPanel >
+                        <md:PackIcon Kind="HomeImportOutline"/>
+                        <!--<Label Content="{md:PackIcon Kind=HomeImportOutline, Size=40}"/>-->
+                        <TextBlock>Nhập</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Command="{Binding ShowDialog}" CommandParameter="{StaticResource View.Output}">
+                    <StackPanel >
+                        <md:PackIcon Kind="HomeExportOutline"/>
+                        <TextBlock>Xuất</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Command="{Binding ShowDialog}" CommandParameter="{StaticResource View.Item}">
+                    <StackPanel >
+                        <md:PackIcon Kind="Ladybug"/>
+                        <TextBlock>Vật tư</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Command="{Binding ShowDialog}" CommandParameter="{StaticResource View.Unit}">
+                    <StackPanel >
+                        <md:PackIcon Kind="PencilRuler"/>
+                        <TextBlock>Đơn vị</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Command="{Binding ShowDialog}" CommandParameter="{StaticResource View.Suplier}">
+                    <StackPanel >
+                        <md:PackIcon Kind="Cart"/>
+                        <TextBlock>Vendor</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Command="{Binding ShowDialog}" CommandParameter="{StaticResource View.Customer}">
+                    <StackPanel >
+                        <md:PackIcon Kind="PacMan"/>
+                        <TextBlock>Khách</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Command="{Binding ShowDialog}" CommandParameter="{StaticResource View.User}">
+                    <StackPanel >
+                        <md:PackIcon Kind="AccountCogOutline"/>
+                        <TextBlock>Tài khoản</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Command="{Binding ShowDialog}" CommandParameter="{StaticResource View.Login}">
+                    <StackPanel >
+                        <md:PackIcon Kind="ExitRun"/>
+                        <TextBlock>Thoát</TextBlock>
+                    </StackPanel>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <md:Card DockPanel.Dock="Top" Margin="20" Padding="20">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                        <Setter Property="md:HintAssist.Hint" Value="Chọn ngày"/>
+                        <Setter Property="Width" Value="200"/>
+                        <Setter Property="Margin" Value="5"/>
+                    </Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="Height" Value="50"/>
+                        <Setter Property="Foreground" Value="{StaticResource MaterialDesignLightBackground}"/>
+                        <Setter Property="Margin" Value="5"/>
+                    </Style>
+                    <Style TargetType="md:Card" >
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="Background" Value="BlueViolet"/>
+                        <Setter Property="Foreground" Value="{StaticResource MaterialDesignLightBackground}"/>
+                        <Setter Property="Padding" Value="20"/>
+                        <Setter Property="Margin" Value="20"/>
+                    </Style>
+                </StackPanel.Resources>
+                <StackPanel Orientation="Horizontal" >
+                    <DatePicker  />
+                    <DatePicker  />
+                    <Button >Lọc</Button>
+                </StackPanel>
+                <Separator />
+                <StackPanel Orientation="Horizontal">
+                    <md:Card>
+                        <DockPanel>
+                            <TextBlock DockPanel.Dock="Bottom" Text="{Binding ElementName=lsvInStocks, Path=SelectedItem.TotalInput}"/>
+                            <Separator DockPanel.Dock="Bottom"/>
+                            <TextBlock DockPanel.Dock="Left">Lượng nhập:</TextBlock>
+                            <md:PopupBox DockPanel.Dock="Right">
+                                <StackPanel>
+                                    <Button Content="More" />
+                                    <Button Content="Options" />
+                                </StackPanel>
+                            </md:PopupBox>
+                        </DockPanel>
+                    </md:Card>
+                    <md:Card>
+                        <DockPanel>
+                            <TextBlock DockPanel.Dock="Bottom" Text="{Binding ElementName=lsvInStocks, Path=SelectedItem.TotalOutput}"/>
+                            <Separator DockPanel.Dock="Bottom"/>
+                            <TextBlock DockPanel.Dock="Left">Lượng xuất:</TextBlock>
+                            <md:PopupBox DockPanel.Dock="Right">
+                                <StackPanel>
+                                    <Button Content="More" />
+                                    <Button Content="Options" />
+                                </StackPanel>
+                            </md:PopupBox>
+                        </DockPanel>
+                    </md:Card>
+                    <md:Card>
+                        <DockPanel>
+                            <TextBlock DockPanel.Dock="Bottom" Text="{Binding ElementName=lsvInStocks, Path=SelectedItem.Count}"/>
+                            <Separator DockPanel.Dock="Bottom"/>
+                            <TextBlock DockPanel.Dock="Left">Tồn kho:</TextBlock>
+                            <md:PopupBox DockPanel.Dock="Right">
+                                <StackPanel>
+                                    <Button Content="More" />
+                                    <Button Content="Options" />
+                                </StackPanel>
+                            </md:PopupBox>
+                        </DockPanel>
+                    </md:Card>
+                </StackPanel>
+            </StackPanel>
+        </md:Card>
+        <md:Card Margin="20 0 20 20" Padding="20">
+            <DockPanel>
+                <DockPanel.Resources>
+                    <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                        <Setter Property="md:HintAssist.Hint" Value="Chọn ngày"/>
+                        <Setter Property="Width" Value="200"/>
+                        <Setter Property="Margin" Value="5"/>
+                    </Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="Height" Value="50"/>
+                        <Setter Property="Foreground" Value="{StaticResource MaterialDesignLightBackground}"/>
+                        <Setter Property="Margin" Value="5"/>
+                    </Style>
+                </DockPanel.Resources>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" >
+                    <DatePicker  />
+                    <DatePicker  />
+                    <Button >Lọc</Button>
+                </StackPanel>
+                <Separator DockPanel.Dock="Top"/>
+                <ListView x:Name="lsvInStocks" ItemsSource="{Binding InStocks}" IsSynchronizedWithCurrentItem="True">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="#" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Số lượng tồn" DisplayMemberBinding="{Binding Count}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </DockPanel>
+        </md:Card>
+    </DockPanel>
+</Window>

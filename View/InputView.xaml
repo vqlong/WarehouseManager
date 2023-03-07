@@ -1,0 +1,112 @@
+﻿<Window x:Class="View.InputView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        Title="Nhập kho" Height="1050" MinWidth="1200"
+        WindowStartupLocation="CenterScreen"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" 
+        WindowStyle="None"
+        ResizeMode="NoResize" 
+        DataContext="{StaticResource InputVM}">
+    <DockPanel TextBlock.FontSize="20" Background="AliceBlue" >
+        <local:TitleBar DockPanel.Dock="Top"/>
+        <DockPanel DockPanel.Dock="Top" Margin="20">
+            <DockPanel DockPanel.Dock="Right" >
+                <Button DockPanel.Dock="Bottom" Margin="20 20 0 0" Command="{Binding InsertInput}" FontSize="20" Foreground="{StaticResource MaterialDesignLightBackground}">Thêm đơn mới</Button>
+                <md:Card Margin="20 0 0 0" Padding="10">
+                    <StackPanel >
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                <Setter Property="MinWidth" Value="200"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="md:TextFieldAssist.HasClearButton" Value="True"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBox  md:HintAssist.Hint="Mã đơn" Text="{Binding InputSerialNumber }" />
+                        <DatePicker md:HintAssist.Hint="Ngày nhập" md:TextFieldAssist.HasClearButton="True" SelectedDate="{Binding InputDate }" MinWidth="200" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="10"/>
+                        <TextBox  md:HintAssist.Hint="Thông tin thêm" Text="{Binding InputMoreInfo }" />
+                    </StackPanel>
+                </md:Card>
+            </DockPanel>
+            <md:Card  Padding="20">
+                <DockPanel>
+                    <DockPanel DockPanel.Dock="Bottom" Margin="0 20 0 0" >
+                        <Button DockPanel.Dock="Right" Command="{Binding SearchInput}" CommandParameter="{Binding ElementName=lsvInputs}" Content="{md:PackIcon Kind=Search, Size=30}" Padding="0" Style="{StaticResource MaterialDesignToolButton}"/>
+                        <TextBox md:HintAssist.Hint="Tìm mã đơn" md:TextFieldAssist.HasClearButton="True" Text="{Binding TextSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    </DockPanel>
+                    <ListView x:Name="lsvInputs" ItemsSource="{Binding Inputs}" SelectedItem="{Binding Current}" IsSynchronizedWithCurrentItem="True" MaxHeight="400">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Mã đơn" DisplayMemberBinding="{Binding SerialNumber}"/>
+                                <GridViewColumn Header="Ngày nhập" DisplayMemberBinding="{Binding Date}"/>
+                                <GridViewColumn Header="Thông tin thêm" DisplayMemberBinding="{Binding MoreInfo}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+            </md:Card>
+        </DockPanel>
+        <md:Card DockPanel.Dock="Top" Margin="20 0 20 0" Padding="10">
+            <WrapPanel >
+                <WrapPanel.Resources>
+                    <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <Setter Property="MinWidth" Value="200"/>
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                    <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <Setter Property="MinWidth" Value="200"/>
+                        <Setter Property="Margin" Value="10"/>
+                        <Setter Property="IsSynchronizedWithCurrentItem" Value="True"/>
+                        <Setter Property="DisplayMemberPath" Value="Name"/>
+                        <Setter Property="SelectedValuePath" Value="Id"/>
+                    </Style>
+                    <CollectionViewSource x:Key="ItemsView" Source="{Binding Source={StaticResource ItemVM}, Path=Items}"/>
+                </WrapPanel.Resources>
+                <ComboBox md:HintAssist.Hint="Tên vật tư" ItemsSource="{Binding Source={StaticResource ItemsView}}" SelectedValue="{Binding CurrentInputInfo.ItemId}"/>
+                <TextBox  md:HintAssist.Hint="Số lượng" Text="{Binding CurrentInputInfo.Count, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox  md:HintAssist.Hint="Giá nhập" Text="{Binding CurrentInputInfo.InputPrice, UpdateSourceTrigger=PropertyChanged}" /> 
+                <TextBox  md:HintAssist.Hint="Trạng thái" Text="{Binding CurrentInputInfo.Status, UpdateSourceTrigger=PropertyChanged}" />
+            </WrapPanel>
+        </md:Card>
+        <md:Card DockPanel.Dock="Top" Margin="20" Padding="10">
+            <WrapPanel >
+                <WrapPanel.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="Width" Value="110"/>
+                        <Setter Property="Foreground" Value="{StaticResource MaterialDesignLightBackground}"/>
+                        <Setter Property="Margin" Value="5"/>
+                    </Style>
+                </WrapPanel.Resources>
+                <Button Command="{Binding Insert}" CommandParameter="{StaticResource MainVM}">Thêm</Button>
+                <Button Command="{Binding Update}">Sửa</Button>
+                <Button Command="{Binding Delete}">Xoá</Button>
+            </WrapPanel>
+        </md:Card>
+        <md:Card Margin="20 0 20 20" Padding="20">
+            <ListView x:Name="lsvInputInfos" ItemsSource="{Binding ElementName=lsvInputs, Path=SelectedItem.InputInfos}" SelectedItem="{Binding CurrentInputInfo, Mode=OneWayToSource}" IsSynchronizedWithCurrentItem="True">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding Item.Name}"/>
+                        <GridViewColumn Header="Mã đơn" DisplayMemberBinding="{Binding Input.SerialNumber}"/>
+                        <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding Count}"/>
+                        <GridViewColumn Header="Giá nhập" DisplayMemberBinding="{Binding InputPrice}"/>
+                        <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </md:Card>
+    </DockPanel>
+</Window>

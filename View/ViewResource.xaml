@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel">
+    <vm:TitleBarViewModel x:Key="TitleBarVM"/>
+    <vm:LoginViewModel x:Key="LoginVM"/>
+    <vm:MainViewModel x:Key="MainVM"/>
+    <vm:UnitViewModel x:Key="UnitVM"/>
+    <vm:SuplierViewModel x:Key="SuplierVM"/>
+    <vm:CustomerViewModel x:Key="CustomerVM"/>
+    <vm:ItemViewModel x:Key="ItemVM"/>
+    <vm:UserViewModel x:Key="UserVM"/>
+    <vm:InputViewModel x:Key="InputVM"/>
+    <vm:OutputViewModel x:Key="OutputVM"/>
+</ResourceDictionary>
