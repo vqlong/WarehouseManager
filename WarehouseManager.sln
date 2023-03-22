@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesign_Sample", "MaterialDesign_Sample\MaterialDesign_Sample.csproj", "{57667743-9E0B-4C80-81F9-25A5205A226C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel", "ViewModel\ViewModel.csproj", "{F8154D29-9A79-4286-B6B1-FFA2E87A30E2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{CC665AF7-36D7-42D8-8BCA-5FD8E637224D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "View\View.csproj", "{275D8FB0-8DAF-4265-85FD-0757DE4AA0C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{76F16E19-E1F7-41EA-BA43-C4358C7B8DFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helper", "Helper\Helper.csproj", "{76F16E19-E1F7-41EA-BA43-C4358C7B8DFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityDataAccess", "EntityDataAccess\EntityDataAccess.csproj", "{26874923-D2EA-4701-BD86-192F89AF9A70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityDataAccess", "EntityDataAccess\EntityDataAccess.csproj", "{26874923-D2EA-4701-BD86-192F89AF9A70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{57667743-9E0B-4C80-81F9-25A5205A226C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57667743-9E0B-4C80-81F9-25A5205A226C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57667743-9E0B-4C80-81F9-25A5205A226C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{57667743-9E0B-4C80-81F9-25A5205A226C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F8154D29-9A79-4286-B6B1-FFA2E87A30E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F8154D29-9A79-4286-B6B1-FFA2E87A30E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8154D29-9A79-4286-B6B1-FFA2E87A30E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
